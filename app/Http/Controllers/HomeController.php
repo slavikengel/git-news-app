@@ -30,18 +30,29 @@ class HomeController extends Controller
     {
 //        dd(User::first()->roles()->count());
 
-        $user = Auth::user();
-        //$user = User::find();
-        $admin = Role::where('slug','admin')->first();
-        $user->roles()->save($admin);
-        $user = $user->fresh();
-        $admin = $admin->fresh();
-        $admin->users;
-        $user->news()->create([
-            'title' => 'Hello world!',
-            'content' => '# Hello world content!!!',
-        ]);
-        News::first()->user(); // тут будет User к которому добавили новость
-        return view('home');
+//        $user = Auth::user();
+////       $user = User::find();
+//        $admin = Role::where('slug','admin')->first();
+//        $user->roles()->save($admin);
+//        $user = $user->fresh();
+//        $admin = $admin->fresh();
+//        $admin->users;
+//        $user->news()->create([
+//            'title' => 'Hello world!',
+//            'content' => '# Hello world content!!!',
+//        ]);
+//        News::first()->user(); // тут будет User к которому добавили новость
+//        return view('home');
+
+        //dd(User::find(2)->roles);
+
+
+
+//        $user = User::first();
+//        $roleUser = Role::where('slug', 'user')->first();
+//        $user->roles()->save($roleUser);
+
+
+
     }
 }

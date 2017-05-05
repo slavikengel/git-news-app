@@ -19,7 +19,8 @@ class CreateNewsTable extends Migration
             $table->string('slug');
             $table->text('content');
             $table->timestamps();
-            $table->string('user_id');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
