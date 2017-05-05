@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\News;
+use Auth;
+use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
@@ -27,9 +30,18 @@ class HomeController extends Controller
     {
 //        dd(User::first()->roles()->count());
 
-//        $user = User::first();
-//        $admin = Role::where('slug','admin')->first();
-//        $user->roles()->save($admin);
+        $user = Auth::user();
+        //$user = User::find();
+        $admin = Role::where('slug','admin')->first();
+        $user->roles()->save($admin);
+        $user = $user->fresh();
+        $admin = $admin->fresh();
+        $admin->users;
+        $user->news()->create([
+            'title' => 'Hello world!',
+            'content' => '# Hello world content!!!',
+        ]);
+        News::first()->user(); // тут будет User к которому добавили новость
         return view('home');
     }
 }
