@@ -59,22 +59,21 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-                            <div class="col-md-4">
-                                @foreach()
-                                <select class="form-control" name="{{old('role')}}">
-                                    <option value="">-- Не выбрано --</option>
-                                    <option value="user">User</option>
-                                    <option value="moderator">Moderator</option>
-                                    <option value="admin">Admin</option>
+                        <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+                            <label for="role" class="col-md-4 control-label">Role</label>
+                            <div class="col-md-6">
+                                <select id="role" class="form-control" name="role" required>
+                                    @foreach($roles as $id => $slug)
+                                        <option value="{{ $id }}" {{ (int)$id === (int) old('role') ? 'selected' : '' }}>{{ $slug }}</option>
+                                    @endforeach
                                 </select>
+                                @if ($errors->has('role'))
+                                    <span class="help-block">
+                                       <strong>{{ $errors->first('role') }}</strong>
+                                   </span>
+                                @endif
                             </div>
                         </div>
-
-
-
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

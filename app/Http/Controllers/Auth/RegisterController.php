@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use App\Models\Role;
 class RegisterController extends Controller
 {
     /*
@@ -51,7 +51,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'role' => 'required|exist:role_id',
+            'role' => 'required|exists:roles,id',
         ]);
     }
 
@@ -63,18 +63,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-//        return User::create([
-//            'name' => $data['name'],
-//            'email' => $data['email'],
-//            'password' => bcrypt($data['password']),
-//        ]);
 
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        $user->roles()->sync([$data['role']]); // добавили роль к модели
+        $user->roles()->sync([$data['role']]);
         return $user;
+    }
+
+    public function showRegistrationForm()
+    {
+        $roles = Role::all()->pluck('slug', 'id');
+        return view('auth.register', compact('roles'));
     }
 }

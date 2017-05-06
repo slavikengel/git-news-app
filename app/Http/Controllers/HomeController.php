@@ -18,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -54,7 +54,7 @@ class HomeController extends Controller
 
 //        $user = User::first();
 //        $user->news()->create([
-//            'title' => 'Hello world!',
+//            'title' => 'H123ello world!',
 //            'content' => '# Hello world content!!!',
 //        ]);
         return view('home');
