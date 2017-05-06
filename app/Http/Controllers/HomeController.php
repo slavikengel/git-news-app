@@ -52,7 +52,11 @@ class HomeController extends Controller
 //        $roleUser = Role::where('slug', 'user')->first();
 //        $user->roles()->save($roleUser);
 
-
+//        $user = User::first();
+//        $user->news()->create([
+//            'title' => 'Hello world!',
+//            'content' => '# Hello world content!!!',
+//        ]);
 
     }
 }
