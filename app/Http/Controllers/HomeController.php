@@ -18,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -57,6 +57,6 @@ class HomeController extends Controller
 //            'title' => 'Hello world!',
 //            'content' => '# Hello world content!!!',
 //        ]);
-
+        return view('home');
     }
 }
