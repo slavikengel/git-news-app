@@ -18,3 +18,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('news/forms/create','NewsController@create');
+
+Route::get('news/edit/{id}', 'NewsController@edit');
+
+Route::put('news/update/{id}','NewsController@update');
+
+Route::get('/news/destroy/{id}', 'NewsController@destroy' );
+
+Route::middleware('auth')->resource('news','NewsController');
+
+Route::post('news/store','NewsController@store');
+
+Route::post('/news/show', 'NewsController@show');
+
