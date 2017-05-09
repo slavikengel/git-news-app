@@ -19,6 +19,6 @@ class ModeratorMiddleware
         if($userRole == 'moderator'){
             return $next($request);
         }
-        return redirect('news/show');
+        return redirect('/home');
     }
 }

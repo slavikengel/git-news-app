@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
+
 class AdminMiddleware
 {
     /**
@@ -20,6 +20,6 @@ class AdminMiddleware
         if($userRole == 'admin'){
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/home');
     }
 }

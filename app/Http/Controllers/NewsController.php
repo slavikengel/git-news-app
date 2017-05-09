@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Auth;
-use App\Models\User;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\StoreNewsRequest;
+use App\Http\Requests\NewsRequest;
+
 class NewsController extends Controller
 {
     /**
@@ -34,33 +33,31 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\NewsRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreNewsRequest $request)
+    public function store(NewsRequest $request)
     {
         $user = Auth::user();
         $user->news()->create($request->all());
-        return redirect('news');
+        return redirect('news/show');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
         $news = News::all();
         return view('news.show', compact('news'));
-//        return view('news.show', ['news'=>$news]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\News  $news
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -72,11 +69,10 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\News  $news
+     * @param \App\Http\Requests\NewsRequest $request, $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NewsRequest $request, $id)
     {
         $news = News::find($id);
         $news->title = $request->input('title');
@@ -88,7 +84,7 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\News  $news
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
