@@ -16,7 +16,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('news.index');
+        return view('news/index');
     }
 
 
@@ -27,7 +27,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('news.forms.create');
+        return view('news/forms/create');
     }
 
     /**
@@ -51,7 +51,7 @@ class NewsController extends Controller
     public function show()
     {
         $news = News::all();
-        return view('news.show', compact('news'));
+        return view('news/show', compact('news'));
     }
 
     /**

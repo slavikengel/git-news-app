@@ -20,6 +20,6 @@ class AdminMiddleware
         if($userRole == 'admin'){
             return $next($request);
         }
-        return redirect('/home');
+        return redirect('news/show');
     }
 }
