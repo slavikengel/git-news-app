@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreNewsRequest;
 class NewsController extends Controller
 {
     /**
@@ -14,11 +17,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //$news = News::all();
-//        return view('news/forms/index', compact('index'));
-        //return view('news.index', ['news'=>$news]);
         return view('news.index');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +37,7 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNewsRequest $request)
     {
         $user = Auth::user();
         $user->news()->create($request->all());
@@ -52,8 +53,8 @@ class NewsController extends Controller
     public function show()
     {
         $news = News::all();
-//        return view('news/forms/index', compact('index'));
-        return view('news.show', ['news'=>$news]);
+        return view('news.show', compact('news'));
+//        return view('news.show', ['news'=>$news]);
     }
 
     /**

@@ -9,10 +9,10 @@
                         <form class="form-horizontal" method="POST" action="{{url('news/store')}}">
                             {{csrf_field()}}
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Заголовок</label>
+                                <label for="title" class="col-md-4 control-label">Заголовок</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="title" required autofocus>
+                                    <input id="title" type="text" class="form-control" name="title" required autofocus>
                                     @if ($errors->has('title'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('title') }}</strong>
