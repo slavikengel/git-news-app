@@ -11,7 +11,6 @@
                             {{csrf_field()}}
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Заголовок</label>
-
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="title"  value="{{$news->title}}" required autofocus>
                                     @if ($errors->has('title'))

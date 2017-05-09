@@ -10,7 +10,6 @@
                             {{csrf_field()}}
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title" class="col-md-4 control-label">Заголовок</label>
-
                                 <div class="col-md-6">
                                     <input id="title" type="text" class="form-control" name="title" required autofocus>
                                     @if ($errors->has('title'))
@@ -20,7 +19,6 @@
                                     @endif
                                 </div>
                             </div>
-
                             <div class="form-group{{ $errors->has('cost') ? ' has-error' : '' }}">
                                 <label for="cost" class="col-md-4 control-label">Текст</label>
 
@@ -33,7 +31,6 @@
                                     @endif
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
@@ -41,9 +38,6 @@
                                     </button>
                                 </div>
                             </div>
-
-
-
                         </form>
                     </div>
                 </div>
