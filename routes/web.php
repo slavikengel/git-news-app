@@ -18,12 +18,3 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')->resource('news','NewsController');
-
-Route::group(['middleware' => 'moderator'], function (){
-    Route::get('news/create',['uses'=> 'NewsController@create']);
-    Route::get('news/edit/{id}', ['uses'=>'NewsController@edit']);
-    Route::put('news/update/{id}',['uses'=>'NewsController@update']);
-    Route::post('news/store', ['uses'=>'NewsController@store']);
-});
-
-Route::get('/news/destroy/{id}', ['uses'=>'NewsController@destroy', 'middleware'=>'admin']);

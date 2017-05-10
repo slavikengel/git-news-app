@@ -3,12 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests\NewsRequest;
 
 class NewsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('gate:moderator',[
+            'only' => ['create', 'edit', 'store', 'update']
+        ]);
+        $this->middleware('gate:admin',[
+            'only' => ['destroy']
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +32,7 @@ class NewsController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
+     * Форма для создание нового ресурса.
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +42,7 @@ class NewsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Создание нового ресурса.
      *
      * @param \App\Http\Requests\NewsRequest $request
      * @return \Illuminate\Http\Response
@@ -44,7 +55,7 @@ class NewsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Вывод ресурса из БД на экран
      *
      * @return \Illuminate\Http\Response
      */
@@ -55,7 +66,7 @@ class NewsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Вывод формы для редактирование опредеенного ресурса
      *
      * @param  $id
      * @return \Illuminate\Http\Response
@@ -67,7 +78,7 @@ class NewsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновление отредактированного ресурса и сохранение в БД
      *
      * @param \App\Http\Requests\NewsRequest $request, $id
      * @return \Illuminate\Http\Response
@@ -82,7 +93,7 @@ class NewsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удаление определенного ресурса из БД
      *
      * @param  $id
      * @return \Illuminate\Http\Response

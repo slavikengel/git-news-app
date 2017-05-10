@@ -6,7 +6,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Редактирование новости</strong></div>
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{url('news/update/'.$news->id)}}">
+                        <form class="form-horizontal" method="POST" action="{{route('news.update',$news->id)}}">
                             {{method_field('PUT')}}
                             {{csrf_field()}}
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">

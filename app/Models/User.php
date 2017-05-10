@@ -10,7 +10,7 @@ class User extends Authenticatable
     use Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * Заполняемые свойства модели.
      *
      * @var array
      */
@@ -19,7 +19,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * Свойства модели которые должны быть скрыты
      *
      * @var array
      */
@@ -27,11 +27,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Новость добавленная пользователем
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function news()
     {
         return $this->hasMany(News::class);
     }
 
+    /**
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function roles(){
         return $this->belongsToMany('App\Models\Role', 'role_users', 'user_id', 'role_id');
 //        return $this->belongsToMany(Role::class);

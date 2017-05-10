@@ -4,8 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-
-class AdminMiddleware
+class GetMiddleware
 {
     /**
      * Handle an incoming request.
@@ -14,12 +13,16 @@ class AdminMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $roles)
     {
-        $userRole = Auth::user()->roles()->value("slug");
-        if($userRole == 'admin'){
+        $roles = explode('|', $roles);
+        $userRoles = Auth::user()->roles()->pluck('slug');
+        if($userRoles->intersect($roles)->count() > 0){
             return $next($request);
         }
-        return redirect('news/show');
+        //return redirect('news/show');
+       return abort(403);
+
+
     }
 }

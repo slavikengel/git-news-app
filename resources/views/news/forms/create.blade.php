@@ -6,7 +6,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Добавление новости</strong></div>
                     <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{url('news/store')}}">
+                        <form class="form-horizontal" method="POST" action="{{route('news.store')}}">
                             {{csrf_field()}}
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="title" class="col-md-4 control-label">Заголовок</label>
