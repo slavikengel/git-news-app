@@ -10,6 +10,9 @@ use App\Http\Requests\NewsRequest;
 
 class NewsController extends Controller
 {
+    /**
+     * Распределение ролей
+     */
     public function __construct()
     {
         $this->middleware('gate:moderator',[

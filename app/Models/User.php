@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Новость добавленная пользователем
+     * Отношение пользователь - новости
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -38,6 +38,7 @@ class User extends Authenticatable
     }
 
     /**
+     * Отношение пользователи - роли
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

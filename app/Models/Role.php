@@ -19,6 +19,8 @@ class Role extends Model
 
 
     /**
+     * Отношение роли - пользователи
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users(){
